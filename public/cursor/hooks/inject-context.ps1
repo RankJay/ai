@@ -5,7 +5,7 @@
 $input = [Console]::In.ReadToEnd() | ConvertFrom-Json
 
 # Path to ai-context.md
-$contextPath = Join-Path $PSScriptRoot "..\..\..\.ai\ai-context.md"
+$contextPath = Join-Path $PSScriptRoot "..\..\.ai\ai-context.md"
 
 # Check if ai-context.md exists
 if (Test-Path $contextPath) {

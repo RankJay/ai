@@ -1,22 +1,28 @@
 ---
 name: research-methodology
-description: "Invoke when exploring unfamiliar code, analyzing dependencies, or preparing for complex changes. Use this skill when the user asks 'how does X work' or before modifying code they don't fully understand."
+description: "Invoke when AI needs guidance on HOW to approach exploration - thinking patterns, analysis strategies, and methodology. NOT for explicit /research command output (that's handled by the command itself)."
 ---
 
-# Research Methodology
+# Research Methodology Skill
 
-Apply the Netflix three-phase research approach to understand systems before modifying them.
+Provides thinking patterns and analytical approaches for understanding systems. This skill guides HOW to think about exploration, while the `/research` command defines WHAT to output.
+
+## Relationship to /research Command
+
+- **This skill**: Guides AI thinking when exploring code (methodology, patterns, strategies)
+- **`/research` command**: User-invoked workflow that produces output to `.ai/active-research.md`
+
+Use this skill when you need to think through an exploration approach, even outside of explicit `/research` invocations.
 
 ## When to Use
 
 Automatically invoke this skill when:
 
-- User asks "how does X work?" or "what does Y do?"
-- User is about to modify unfamiliar code
-- Task touches >3 files
-- Security or performance implications exist
-- User mentions refactoring or migration
-- Architectural decisions need to be made
+- AI is uncertain about how to approach understanding unfamiliar code
+- Need to decide what aspects of a system to investigate
+- Analyzing whether a change is safe requires systematic thinking
+- User asks "how does X work?" without invoking `/research`
+- Making decisions about exploration depth and strategy
 
 ## Process
 
@@ -117,12 +123,13 @@ Provide structured analysis with:
 
 ## Integration with Workflow
 
-This skill supports the Research phase of the three-phase workflow. After completing research:
+This skill provides the **thinking methodology** that supports:
 
-1. User validates the analysis
-2. Corrections are made if needed
-3. Research is saved to `.ai/active-research.md`
-4. Proceed to Planning phase with `/plan`
+- The `/research` command (explicit research workflow)
+- Ad-hoc exploration when user asks questions
+- Pre-implementation analysis during any task
+
+**Key distinction**: This skill helps AI think systematically. The `/research` command produces the formal output document.
 
 ## Why This Matters
 

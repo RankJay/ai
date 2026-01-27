@@ -48,6 +48,20 @@ The plan should be specific enough that implementation becomes mechanical execut
 
 A validated plan prevents architectural drift and ensures you maintain understanding throughout implementation.
 
+## Pre-Generation Checklist (from ai-guardrails.md)
+
+Before proceeding to implementation, verify:
+
+- [ ] I can describe what I'm building in 100 words
+- [ ] I've sketched the architecture (boxes & arrows)
+- [ ] I know which patterns to follow (reference ai-context.md)
+- [ ] I know which patterns to avoid (reference ai-context.md)
+- [ ] I've listed key decisions and WHY
+- [ ] I know what success looks like
+- [ ] I know the blast radius if this is wrong
+
+If any checkbox is empty, the plan is not ready for implementation.
+
 ## After Planning
 
 Once plan is validated:

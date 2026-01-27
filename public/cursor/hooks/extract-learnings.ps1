@@ -32,6 +32,7 @@ Session completed. Consider updating your project context:
 2. Were there architectural decisions made?
 3. Did you identify new pitfalls or constraints?
 4. Should the File/Module Map be updated?
+5. Should active research/plan docs be archived to .ai/archive/?
 
 Update .ai/ai-context.md to capture these learnings for future sessions.
 "@

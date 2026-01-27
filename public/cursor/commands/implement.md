@@ -35,6 +35,19 @@ At this phase, review is just verifying conformance to the plan, not understandi
 
 "The AI executes the spec. Review is just verifying conformance, not understanding what got invented."
 
+## Post-Generation Validation (from ai-guardrails.md)
+
+After implementation, verify:
+
+- [ ] I can explain how this works to a junior engineer
+- [ ] I can identify essential vs accidental complexity
+- [ ] I could modify this if requirements changed
+- [ ] I could debug this at 3am
+- [ ] This follows our architectural principles (check ai-context.md)
+- [ ] This doesn't repeat past mistakes (check ai-context.md "Common Pitfalls")
+
+If any checkbox is empty, do not proceed to commit. Address issues first.
+
 ## When Implementation is Complete
 
 1. Run `/review` to validate against post-generation checklist

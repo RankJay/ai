@@ -25,6 +25,14 @@ globs:
 - Remind user to validate against post-generation checklist
 - Suggest what should be added to ai-context.md if new patterns emerged
 
+## Guardrails Reference
+
+For detailed checklists and safeguards, see `.ai/ai-guardrails.md`:
+
+- Pre-generation checklist (validate before implementation)
+- Post-generation checklist (validate after implementation)
+- Stop and think triggers (red-light scenarios)
+
 ### `.ai/archive/`
 
 **Purpose:** Store completed research/plan docs  

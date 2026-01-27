@@ -11,7 +11,7 @@
     "preToolUse": [
       {
         "type": "prompt",
-        "prompt": "Before executing this tool, check: Is this a red-light scenario (security, auth, payments, migration touching >5 files)? If yes and no validated plan exists in context, return {\"decision\": \"deny\", \"reason\": \"Red-light scenario requires validated plan. Use /plan first.\"}. Otherwise return {\"decision\": \"allow\"}",
+        "prompt": "Before executing this tool, check: Is this a red-light scenario (security, auth, payments, refactoring touching >3 files)? See .ai/ai-guardrails.md 'Stop and Think Triggers' for full list. If yes and no validated plan exists in context, return {\"decision\": \"deny\", \"reason\": \"Red-light scenario requires validated plan. Use /plan first.\"}. Otherwise return {\"decision\": \"allow\"}",
         "matcher": "write",
         "timeout": 5
       }
@@ -33,7 +33,7 @@
     "beforeSubmitPrompt": [
       {
         "type": "prompt",
-        "prompt": "Analyze this prompt. Is it requesting complex code generation (new features, refactoring >3 files, security-sensitive, architectural changes)? If YES and user has NOT provided project context or referenced a research/plan document, return {\"continue\": false, \"user_message\": \"Complex task detected. Please start with /research or provide your ai-context.md\"}. If simple task or context provided, return {\"continue\": true}.",
+        "prompt": "Analyze this prompt. Is it requesting complex code generation (new features, refactoring >3 files, security-sensitive, architectural changes)? See .ai/ai-guardrails.md for triggers. If YES and user has NOT provided project context or referenced a research/plan document, return {\"continue\": false, \"user_message\": \"Complex task detected. Please start with /research or provide your ai-context.md\"}. If simple task or context provided, return {\"continue\": true}.",
         "timeout": 10
       }
     ],

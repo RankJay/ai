@@ -8,7 +8,7 @@ $filePath = $input.file_path
 $edits = $input.edits
 
 # Log the edit for audit trail
-$logPath = Join-Path $PSScriptRoot "..\..\..\.ai\edit-log.txt"
+$logPath = Join-Path $PSScriptRoot "..\..\.ai\edit-log.txt"
 $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 $logEntry = "[$timestamp] Edited: $filePath ($($edits.Count) change(s))`n"
 

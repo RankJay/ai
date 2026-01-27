@@ -1,5 +1,13 @@
 # Safeguards and Guardrails
 
+> **Integration Note**: The checklists in this document are integrated into the workflow:
+>
+> - Pre-Generation Checklist → Referenced in `/plan` command
+> - Post-Generation Checklist → Referenced in `/implement` command
+> - Stop and Think Triggers → Referenced in rules
+>
+> This document serves as the central reference. Commands link back here.
+
 ## Pre-Generation Checklist
 
 - [ ] I can describe what I'm building in 100 words
@@ -74,11 +82,11 @@ Here's a workflow for keeping context fresh:
 3. **Archive task docs:**
 
     ```txt
-    /ai-context/
+    .ai/
         ai-context.md          (permanent, always updated)
-        /archive/
-        research-auth-migration-2024-12.md
-        plan-auth-migration-2024-12.md
+        archive/
+            research-auth-migration-2024-12.md
+            plan-auth-migration-2024-12.md
     ```
 
 4. **Weekly review:**
