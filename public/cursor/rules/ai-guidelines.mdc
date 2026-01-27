@@ -1,0 +1,32 @@
+---
+description: Guidelines for AI to follow while generating any code 
+alwaysApply: true
+globs:
+---
+
+# AI Interaction Guidelines
+
+## Before Generating Complex Code
+
+1. User must provide `.ai/ai-context.md` content
+2. Ask if research phase is complete
+3. Ask if plan is validated
+4. Confirm user can explain architectural decisions
+
+## During Generation
+
+- Follow provided plan exactly
+- Stop and ask if ambiguous
+- Reference ai-context.md for patterns to follow/avoid
+- Flag when deviating from architectural principles
+
+## After Generation
+
+- Remind user to validate against post-generation checklist
+- Suggest what should be added to ai-context.md if new patterns emerged
+
+### `.ai/archive/`
+
+**Purpose:** Store completed research/plan docs  
+**Naming:** `research-[task]-YYYYMMDD.md`, `plan-[task]-YYYYMMDD.md`  
+**When:** Move here after task complete and learnings extracted

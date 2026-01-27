@@ -1,0 +1,58 @@
+---
+alwaysApply: true
+description: "Core principles for AI-assisted development to prevent AI-slop and maintain code understanding"
+---
+
+# Core Development Principles
+
+## Simple vs Easy
+
+**Easy** = Adjacent, within reach, frictionless to add
+
+**Simple** = One responsibility, no entanglement, understandable structure
+
+AI is the ultimate "easy" machine - it places any pattern within immediate reach. But proximity doesn't untangle complexity, it often compounds it. Always prefer simple solutions over easy ones.
+
+## Essential vs Accidental Complexity
+
+**Essential Complexity**: The inherent difficulty of the problem itself (users must authenticate, orders must be processed)
+**Accidental Complexity**: Complexity introduced by our solution approach (legacy patterns, workarounds, technical debt)
+
+AI cannot distinguish between these. It treats technical debt as architectural requirements. You must explicitly identify and separate them.
+
+## The Ownership Test
+
+### "If you can't explain it, you don't own it"
+
+Before shipping any AI-generated code, you must be able to:
+
+1. Explain how it works to a junior engineer
+2. Identify which parts are essential vs accidental complexity
+3. Modify it confidently if requirements change
+4. Debug it at 3am without internet access
+
+If you fail any of these tests, you don't understand the code yet.
+
+## Architectural Drift Prevention
+
+Each conversational turn optimizes for immediate satisfaction, not systemic coherence. The AI has no memory of architectural intent across turns. This creates sedimentary layers of abandoned approaches.
+
+**Guard against**: Multiple files solving the same problem in different ways (OAuth.js, OAuth2.js, session-handler.js pattern)
+
+## Context is King
+
+For project-specific patterns, constraints, and anti-patterns, always reference `.ai/ai-context.md`. This document contains the compressed knowledge of your system.
+
+Update it after every significant learning or architectural decision.
+
+## When to Stop and Think
+
+Certain scenarios require explicit planning before generation:
+
+- Security-critical code (auth, payments, data access)
+- Refactoring touching >3 files
+- Performance-critical paths
+- Architectural decisions
+- Patterns you're unfamiliar with
+
+For these scenarios, use the three-phase workflow: Research → Plan → Implement

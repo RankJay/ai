@@ -1,0 +1,125 @@
+---
+alwaysApply: false
+description: "Security guidelines for authentication, authorization, payment processing, and data protection code"
+globs:
+  - "**/auth/**"
+  - "**/authentication/**"
+  - "**/authorization/**"
+  - "**/payment/**"
+  - "**/billing/**"
+  - "**/security/**"
+  - "**/*auth*.ts"
+  - "**/*auth*.js"
+  - "**/*payment*.ts"
+  - "**/*payment*.js"
+---
+
+# Security Patterns
+
+## Red-Light Scenarios
+
+This code is in a **RED-LIGHT** zone. These scenarios require:
+
+1. Explicit threat model discussion
+2. Validated implementation plan (use `/plan`)
+3. Security review before shipping
+
+## Authentication Patterns
+
+### DO
+
+- Use established authentication libraries (OAuth 2.0, OpenID Connect)
+- Store tokens in httpOnly cookies (not localStorage)
+- Implement proper session management with expiry
+- Use secure password hashing (bcrypt, argon2)
+- Implement rate limiting on auth endpoints
+- Use HTTPS/TLS for all auth traffic
+
+### DON'T
+
+- Roll your own crypto or authentication
+- Store passwords in plain text or with weak hashing (MD5, SHA1)
+- Store sensitive tokens in localStorage or sessionStorage
+- Trust client-side validation alone
+- Expose sensitive error messages to users
+- Use predictable session IDs
+
+## Authorization Patterns
+
+### DO
+
+- Implement principle of least privilege
+- Validate permissions on every request (server-side)
+- Use role-based or attribute-based access control
+- Check authorization at the service layer, not just UI
+- Log authorization failures for audit
+
+### DON'T
+
+- Rely on client-side permission checks
+- Mix business logic with authorization logic
+- Use client-provided user IDs without validation
+- Expose internal role structures to clients
+
+## Payment Processing
+
+### DO
+
+- Use PCI-compliant payment processors (Stripe, PayPal)
+- Never store raw credit card numbers
+- Implement idempotency for payment operations
+- Log all payment transactions
+- Use webhook signature verification
+- Implement proper error handling and retries
+
+### DON'T
+
+- Handle credit card data directly
+- Store CVV codes
+- Process payments without SSL/TLS
+- Skip transaction logging
+- Trust client-side payment amounts
+
+## Data Protection
+
+### DO
+
+- Encrypt sensitive data at rest and in transit
+- Use environment variables for secrets (never hardcode)
+- Implement proper key rotation
+- Sanitize all user inputs
+- Use parameterized queries (prevent SQL injection)
+- Implement CSRF protection
+
+### DON'T
+
+- Commit secrets to version control
+- Log sensitive data (passwords, tokens, PII)
+- Trust user input without validation
+- Use string concatenation for SQL queries
+- Expose internal error details to users
+
+## Required Before Implementation
+
+For any code in this security zone:
+
+1. **Threat Model**: What could go wrong? What's the attack surface?
+2. **Validated Plan**: Use `/plan` to create a security-reviewed implementation spec
+3. **Blast Radius**: What's the impact if this is compromised?
+4. **Rollback Plan**: How do we revert if issues are found?
+
+## Common Pitfalls
+
+- **OAuth.js + OAuth2.js + session-handler.js pattern**: Multiple overlapping auth implementations create security gaps
+- **Mixing auth with business logic**: Makes security audits impossible and refactoring dangerous
+- **Preserving legacy auth patterns**: "AI treats technical debt as architectural requirements" - explicitly flag old patterns as deprecated
+
+## After Implementation
+
+Use `/review` to verify:
+
+- No secrets in code
+- All inputs validated
+- Error messages don't leak information
+- Authorization checks are server-side
+- Logging doesn't expose sensitive data

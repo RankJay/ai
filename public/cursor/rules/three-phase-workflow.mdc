@@ -1,0 +1,91 @@
+---
+alwaysApply: true
+description: "Enforce the three-phase methodology: Research → Plan → Implement to prevent rushed code generation"
+---
+
+# Three-Phase Workflow
+
+## The Problem
+
+We've optimized for code generation speed while understanding velocity has remained constant. When you can generate 1000 lines in 30 seconds but need 30 minutes to understand them, you inevitably accumulate incomprehension faster than insight.
+
+## The Solution: Compress Understanding First
+
+### "Compress 5 million tokens of code into 2000 words of specification. Think first, generate second."
+
+## Phase 1: Research
+
+**Goal**: Understand the system before teaching AI to modify it
+
+**Process**:
+
+1. Feed context (docs, architecture, existing code)
+2. Analyze and map dependencies
+3. Probe and correct the analysis iteratively
+4. Identify essential vs accidental complexity
+
+**Output**: A validated research document at `.ai/active-research.md`
+
+**Command**: Use `/research [task description]` to start
+
+## Phase 2: Planning
+
+**Goal**: Make architectural decisions while you can still see them clearly
+
+**Process**:
+
+1. Create detailed implementation spec with signatures, types, data flow
+2. Achieve "paint by numbers" clarity - a junior engineer could execute it
+3. Validate against patterns in `.ai/ai-context.md`
+4. Verify blast radius is acceptable
+
+**Output**: A validated plan at `.ai/active-plan.md`
+
+**Command**: Use `/plan` after research is complete
+
+## Phase 3: Implementation
+
+**Goal**: Execute the validated specification
+
+**Process**:
+
+1. AI executes the spec step by step
+2. Follow the plan EXACTLY
+3. Stop and ask if anything is ambiguous rather than inventing solutions
+4. Review is just verifying conformance, not understanding what got invented
+
+**Command**: Use `/implement` after plan is validated
+
+## When to Use This Workflow
+
+**Mandatory for**:
+
+- New features or significant changes
+- Refactoring touching >3 files
+- Security-sensitive code (auth, payments, data migration)
+- Architectural decisions
+- Unfamiliar patterns or technologies
+
+**Optional for**:
+
+- Boilerplate you understand
+- Simple bug fixes in familiar code
+- Implementing a design you've already specified
+- Converting between formats
+
+## Critical Rules
+
+1. **Never skip Research for complex tasks** - You must understand the system before modifying it
+2. **Plans must be validated** - Review against `.ai/ai-context.md` patterns and anti-patterns
+3. **Stop if ambiguous** - Ask rather than invent solutions during implementation
+4. **Update context after completion** - Extract learnings to `.ai/ai-context.md`
+
+## For Complex Tasks Without Context
+
+If you're asked to generate complex code without:
+
+- Project context from `.ai/ai-context.md`
+- A research document
+- A validated plan
+
+**Stop and redirect**: "This requires the three-phase workflow. Please start with `/research` or provide your project context."
