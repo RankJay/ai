@@ -24,3 +24,6 @@ dist/
 build/
 target/
 *.tsbuildinfo
+
+# Cargo
+Cargo.lock
