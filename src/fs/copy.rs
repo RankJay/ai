@@ -9,11 +9,7 @@ pub enum CopyResult {
 }
 
 /// Copy content to target path, prompting if file exists (unless force=true)
-pub fn copy_with_prompt(
-    target: &Path,
-    content: &str,
-    force: bool,
-) -> std::io::Result<CopyResult> {
+pub fn copy_with_prompt(target: &Path, content: &str, force: bool) -> std::io::Result<CopyResult> {
     // Ensure parent directories exist
     if let Some(parent) = target.parent() {
         fs::create_dir_all(parent)?;

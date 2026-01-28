@@ -1,4 +1,4 @@
-pub mod init;
 pub mod doctor;
-pub mod upgrade;
+pub mod init;
 pub mod uninstall;
+pub mod upgrade;

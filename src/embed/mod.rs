@@ -10,12 +10,12 @@ pub struct EmbeddedFile {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum FileCategory {
-    AiTemplates,    // .ai/ files
-    Rules,          // .cursor/rules/
-    Commands,       // .cursor/commands/
-    Hooks,          // .cursor/hooks/
-    Skills,         // .cursor/skills/
-    Agents,         // .cursor/agents/
+    AiTemplates, // .ai/ files
+    Rules,       // .cursor/rules/
+    Commands,    // .cursor/commands/
+    Hooks,       // .cursor/hooks/
+    Skills,      // .cursor/skills/
+    Agents,      // .cursor/agents/
 }
 
 impl FileCategory {
@@ -73,7 +73,6 @@ pub fn get_all_files() -> Vec<EmbeddedFile> {
             content: include_str!("../../public/ai/template/research.md"),
             category: FileCategory::AiTemplates,
         },
-        
         // .cursor/rules/
         EmbeddedFile {
             target_path: ".cursor/rules/ai-guidelines.mdc",
@@ -95,7 +94,6 @@ pub fn get_all_files() -> Vec<EmbeddedFile> {
             content: include_str!("../../public/cursor/rules/three-phase-workflow.mdc"),
             category: FileCategory::Rules,
         },
-        
         // .cursor/commands/
         EmbeddedFile {
             target_path: ".cursor/commands/adr.md",
@@ -132,7 +130,6 @@ pub fn get_all_files() -> Vec<EmbeddedFile> {
             content: include_str!("../../public/cursor/commands/sync.md"),
             category: FileCategory::Commands,
         },
-        
         // .cursor/hooks/
         EmbeddedFile {
             target_path: ".cursor/hooks.json",
@@ -154,7 +151,6 @@ pub fn get_all_files() -> Vec<EmbeddedFile> {
             content: include_str!("../../public/cursor/hooks/post-edit-check.ps1"),
             category: FileCategory::Hooks,
         },
-        
         // .cursor/agents/
         EmbeddedFile {
             target_path: ".cursor/agents/researcher.md",
@@ -166,7 +162,6 @@ pub fn get_all_files() -> Vec<EmbeddedFile> {
             content: include_str!("../../public/cursor/agents/verifier.md"),
             category: FileCategory::Agents,
         },
-        
         // .cursor/skills/
         EmbeddedFile {
             target_path: ".cursor/skills/architecture-decision/SKILL.md",

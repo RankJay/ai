@@ -31,19 +31,16 @@ pub struct LatestRelease {
 /// Get latest release info from GitHub
 pub fn get_latest_release(repo: &str) -> Result<LatestRelease, GithubError> {
     let url = format!("https://api.github.com/repos/{}/releases/latest", repo);
-    
+
     let client = reqwest::blocking::Client::new();
-    let response = client
-        .get(&url)
-        .header("User-Agent", "ai-init")
-        .send()?;
+    let response = client.get(&url).header("User-Agent", "ai-init").send()?;
 
     if response.status() == 404 {
         return Err(GithubError::NotFound);
     }
 
     let release: Release = response.json()?;
-    
+
     Ok(LatestRelease {
         version: release.tag_name.clone(),
         tag: release.tag_name,
@@ -63,10 +60,7 @@ pub fn download_release_asset(
     );
 
     let client = reqwest::blocking::Client::new();
-    let response = client
-        .get(&url)
-        .header("User-Agent", "ai-init")
-        .send()?;
+    let response = client.get(&url).header("User-Agent", "ai-init").send()?;
 
     let release: Release = response.json()?;
 

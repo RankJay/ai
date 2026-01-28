@@ -59,9 +59,8 @@ fn main() {
     let cli = Cli::parse();
 
     let result: Result<(), Box<dyn std::error::Error>> = match cli.command {
-        Commands::Init { only, skip, force } => {
-            commands::init::run(only, skip, force).map_err(|e| Box::new(e) as Box<dyn std::error::Error>)
-        }
+        Commands::Init { only, skip, force } => commands::init::run(only, skip, force)
+            .map_err(|e| Box::new(e) as Box<dyn std::error::Error>),
         Commands::Doctor { fix } => {
             commands::doctor::run(fix).map_err(|e| Box::new(e) as Box<dyn std::error::Error>)
         }

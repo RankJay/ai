@@ -9,13 +9,19 @@ pub fn update_gitignore(path: &Path) -> std::io::Result<bool> {
     let mut modified = false;
 
     // Check and add .cursor/
-    if !lines.iter().any(|l| l.trim() == ".cursor/" || l.trim() == ".cursor") {
+    if !lines
+        .iter()
+        .any(|l| l.trim() == ".cursor/" || l.trim() == ".cursor")
+    {
         lines.push(".cursor/");
         modified = true;
     }
 
     // Check and add .ai/
-    if !lines.iter().any(|l| l.trim() == ".ai/" || l.trim() == ".ai") {
+    if !lines
+        .iter()
+        .any(|l| l.trim() == ".ai/" || l.trim() == ".ai")
+    {
         lines.push(".ai/");
         modified = true;
     }

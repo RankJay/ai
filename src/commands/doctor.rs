@@ -17,7 +17,7 @@ pub enum DoctorError {
 
 pub fn run(auto_fix: bool) -> Result<(), DoctorError> {
     let repo_root = find_repo_root()?.ok_or(DoctorError::NotInGitRepo)?;
-    
+
     println!(
         "{} Checking repository at: {}",
         style("→").blue(),
@@ -49,8 +49,13 @@ pub fn run(auto_fix: bool) -> Result<(), DoctorError> {
     };
 
     // Report results
-    println!("{} Files present: {}/{}", style("✓").green(), present, files.len());
-    
+    println!(
+        "{} Files present: {}/{}",
+        style("✓").green(),
+        present,
+        files.len()
+    );
+
     if missing.is_empty() && !gitignore_needs_update {
         println!();
         println!("{} All checks passed!", style("✓").green().bold());
@@ -78,7 +83,7 @@ pub fn run(auto_fix: bool) -> Result<(), DoctorError> {
     // Offer to fix
     if !missing.is_empty() || gitignore_needs_update {
         println!();
-        
+
         let should_fix = if auto_fix {
             true
         } else {

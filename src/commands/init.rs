@@ -6,7 +6,9 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum InitError {
-    #[error("Not in a git repository. Run from a directory with .git or its immediate subdirectory.")]
+    #[error(
+        "Not in a git repository. Run from a directory with .git or its immediate subdirectory."
+    )]
     NotInGitRepo,
     #[error("Invalid category: {0}. Valid: ai, rules, commands, hooks, skills, agents")]
     InvalidCategory(String),
@@ -23,7 +25,7 @@ pub fn run(
 ) -> Result<(), InitError> {
     // 1. Find git repo root
     let repo_root = find_repo_root()?.ok_or(InitError::NotInGitRepo)?;
-    
+
     println!(
         "{} Found git repository at: {}",
         style("✓").green(),
@@ -35,16 +37,9 @@ pub fn run(
     let skip_cats = parse_categories(skip)?;
 
     // 3. Get filtered file list
-    let files = embed::get_files_by_categories(
-        only_cats.as_deref(),
-        skip_cats.as_deref(),
-    );
+    let files = embed::get_files_by_categories(only_cats.as_deref(), skip_cats.as_deref());
 
-    println!(
-        "{} Installing {} files...",
-        style("→").blue(),
-        files.len()
-    );
+    println!("{} Installing {} files...", style("→").blue(), files.len());
 
     // 4. Copy each file
     let mut installed = 0;
@@ -52,7 +47,7 @@ pub fn run(
 
     for file in &files {
         let target = repo_root.join(file.target_path);
-        
+
         match copy_with_prompt(&target, file.content, force)? {
             crate::fs::CopyResult::Created | crate::fs::CopyResult::Overwritten => {
                 println!("  {} {}", style("✓").green(), file.target_path);
