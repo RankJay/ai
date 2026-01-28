@@ -38,7 +38,7 @@ Certain situations should trigger an automatic pause:
 STOP if you're about to:
 
 - Generate code for security/auth/payments
-- Refactor something touching >8 files
+- Refactor something touching >5 files
 - Use a pattern you're not familiar with
 - Work on something that's broken before
 - Feel rushed or pressured
@@ -49,6 +49,54 @@ When stopped, ask:
 - Have I done research phase? (Should have research doc)
 - Have I validated a plan? (Should have plan doc)
 - What's the worst case if this is wrong?
+
+## Risk Assessment Matrix
+
+Before starting complex tasks, score each dimension:
+
+### Complexity (1-5)
+
+| Score         | Description                                             |
+| 1     | Simple utility, pure function, single file                      |
+| 2     | Single component, clear boundaries                              |
+| 3     | Multiple components, some coupling                              |
+| 4     | Cross-cutting concerns, many dependencies                       |
+| 5     | System-wide changes, unclear boundaries                         |
+
+### Criticality (1-5)
+
+| Score         | Description                                             |
+| 1     | UI polish, non-functional, easily reverted                      |
+| 2     | User-facing feature, non-blocking                               |
+| 3     | Core feature, can be disabled/rolled back                       |
+| 4     | Core feature, difficult to disable                              |
+| 5     | Auth/payments/data integrity - failure is severe                |
+
+### Familiarity (1-5)
+
+| Score         | Description                                             |
+| 1     | Pattern used 10+ times, well understood                         |
+| 2     | Pattern used a few times                                        |
+| 3     | Pattern read about but not implemented                          |
+| 4     | Pattern never used before                                       |
+| 5     | Custom/novel pattern being invented                             |
+
+### Action Based on Total Score
+
+| Total         | Risk Level         | Required Action                                 |
+| 3-7   | **Low**    | Generate freely, standard review                                |
+| 8-11  | **Medium** | Complete research phase, validate plan                          |
+| 12-15 | **High**   | Full three-phase workflow, senior review, manual-first approach |
+
+### Example Assessment
+
+**Task**: Add OAuth migration for payments endpoint
+
+- Complexity: 4 (touches auth + payments)
+- Criticality: 5 (payments!)
+- Familiarity: 3 (done auth before, not payments)
+- **Total: 12 = HIGH RISK**
+- **Action**: Manual implementation first to learn, then AI replication
 
 ## Context Freshness Check
 

@@ -61,7 +61,7 @@ We've optimized for code generation speed while understanding velocity has remai
 **Mandatory for**:
 
 - New features or significant changes
-- Refactoring touching >3 files
+- Refactoring touching >5 files
 - Security-sensitive code (auth, payments, data migration)
 - Architectural decisions
 - Unfamiliar patterns or technologies

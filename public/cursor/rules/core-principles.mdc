@@ -50,7 +50,7 @@ Update it after every significant learning or architectural decision.
 Certain scenarios require explicit planning before generation:
 
 - Security-critical code (auth, payments, data access)
-- Refactoring touching >3 files
+- Refactoring touching >5 files
 - Performance-critical paths
 - Architectural decisions
 - Patterns you're unfamiliar with
