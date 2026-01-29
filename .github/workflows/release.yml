@@ -5,6 +5,20 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release"
+        required: true
+        default: "v0.0.1"
+      tag:
+        description: "Tag to release"
+        required: true
+        type: string
+      release_notes:
+        description: "Release notes"
+        required: true
+        default: "Initial release"
+        
 
 permissions:
   contents: write
@@ -91,6 +105,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.ref_name || inputs.tag }}
           files: |
             artifacts/ai-init-linux-amd64/ai-init-linux-amd64
             artifacts/ai-init-linux-arm64/ai-init-linux-arm64
