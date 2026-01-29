@@ -213,7 +213,7 @@ function Install-AiInit {
         
         # 11. Success message
         Write-Host ""
-        Write-Host "✓ ai-init installed successfully!" -ForegroundColor Green
+        Write-Host "ai-init installed successfully!" -ForegroundColor Green
         Write-Host ""
         Write-Host "Installed to: ${installDir}"
         $version = & (Join-Path $installDir $BINARY_NAME) --version 2>&1 | Select-Object -First 1
@@ -221,7 +221,7 @@ function Install-AiInit {
         Write-Host ""
         Write-Host "PATH has been updated. You may need to restart your terminal."
         Write-Host ""
-        Write-Host "Run 'ai-init --help' to get started."
+        Write-Host "Run ai-init --help to get started."
     }
     finally {
         Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue

@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["RankJay"]
 description = "CLI tool to initialize AI workflow templates in git repositories"
 repository = "https://github.com/RankJay/ai"
-license = "MIT"
+license = "PolyForm-Noncommercial-1.0.0"
 
 [dependencies]
 clap = { version = "4.5.55", features = ["derive"] }

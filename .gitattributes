@@ -1,0 +1,56 @@
+# Line ending normalization
+# Auto detect text files and normalize line endings to LF
+* text=auto
+
+# Explicitly declare files that must always be normalized and converted to LF
+*.rs text eol=lf
+*.md text eol=lf
+*.mdc text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.txt text eol=lf
+*.lock text eol=lf
+
+# PowerShell scripts must use CRLF for Windows compatibility
+*.ps1 text eol=crlf
+
+# Binary files
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.a binary
+*.o binary
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary
+*.7z binary
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Ensure install scripts have correct line endings
+install.sh text eol=lf
+install.ps1 text eol=crlf
+
+# Ensure PowerShell hooks have CRLF
+public/cursor/hooks/*.ps1 text eol=crlf
+
+# Git attributes file itself
+.gitattributes text eol=lf
