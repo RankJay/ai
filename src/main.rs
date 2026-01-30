@@ -53,6 +53,9 @@ enum Commands {
         #[arg(long, short)]
         force: bool,
     },
+
+    /// Rate and provide feedback for ai-init
+    Rate,
 }
 
 fn main() {
@@ -69,6 +72,9 @@ fn main() {
         }
         Commands::Uninstall { force } => {
             commands::uninstall::run(force).map_err(|e| Box::new(e) as Box<dyn std::error::Error>)
+        }
+        Commands::Rate => {
+            commands::rate::run().map_err(|e| Box::new(e) as Box<dyn std::error::Error>)
         }
     };
 

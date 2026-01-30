@@ -20,6 +20,7 @@ A cross-platform CLI tool that initializes AI workflow templates in git reposito
   - [Initialize Templates](#initialize-templates)
   - [Check Repository Health](#check-repository-health)
   - [Uninstall Templates](#uninstall-templates)
+  - [Rate and Provide Feedback](#rate-and-provide-feedback)
 - [Commands](#commands)
 - [Built With](#built-with)
 - [Contributing](#contributing)
@@ -160,6 +161,19 @@ ai-init uninstall
 |------|-------------|
 | `--force` | Remove files without prompting |
 
+### Rate and Provide Feedback
+
+Share your experience and help improve ai-init:
+
+```bash
+ai-init rate
+```
+
+This interactive command allows you to:
+- Rate ai-init from 1-5 stars
+- Provide optional feedback
+- Learn about ways to contribute to the project
+
 ---
 
 ## Commands
@@ -170,6 +184,7 @@ ai-init uninstall
 | `doctor` | Check repository for missing or broken AI workflow files |
 | `upgrade` | Upgrade ai-init to the latest version |
 | `uninstall` | Remove AI workflow files from the repository |
+| `rate` | Rate and provide feedback for ai-init |
 
 ---
 
