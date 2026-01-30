@@ -30,7 +30,7 @@ pub fn run() -> Result<(), RateError> {
     let selection = Select::new()
         .with_prompt("How would you rate ai-init?")
         .items(&ratings)
-        .default(4) // Default to 5 stars
+        .default(4) // Index 4 = 5 stars (0-indexed array)
         .interact()?;
 
     let rating = selection + 1; // Convert index to 1-5 rating
