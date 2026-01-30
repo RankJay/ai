@@ -41,7 +41,7 @@ get_asset_name() {
 # Prompt for installation directory
 prompt_install_dir() {
     local default="$1"
-    echo -n "Installation directory [${default}]: "
+    echo -n "Installation directory [${default}]: " >&2
     read -r user_input
     if [ -z "$user_input" ]; then
         echo "$default"
@@ -59,8 +59,8 @@ check_existing_installation() {
 # Prompt user for upgrade
 prompt_upgrade() {
     local install_path="$1"
-    echo -e "${YELLOW}ai-init is already installed at ${install_path}${NC}"
-    echo -n "Upgrade? [Y/n]: "
+    echo -e "${YELLOW}ai-init is already installed at ${install_path}${NC}" >&2
+    echo -n "Upgrade? [Y/n]: " >&2
     read -r response
     case "$response" in
         [Nn]*) return 1 ;;
@@ -123,12 +123,27 @@ update_shell_config() {
             ;;
     esac
     
-    if [ -n "$config_file" ] && ! grep -q "$install_dir" "$config_file" 2>/dev/null; then
-        mkdir -p "$(dirname "$config_file")"
-        echo "" >> "$config_file"
-        echo "# ai-init" >> "$config_file"
-        echo "$path_line" >> "$config_file"
-        echo -e "${GREEN}Updated ${config_file}${NC}"
+    if [ -n "$config_file" ]; then
+        # Check if ai-init PATH is already configured
+        # Look for either the exact path or $HOME/.local/bin pattern
+        local dir_pattern=$(echo "$install_dir" | sed 's/[.*+?^${}()|[\]\\]/\\&/g')
+        local home_pattern="\\\$HOME/.local/bin"
+        
+        if ! grep -qE "# ai-init" "$config_file" 2>/dev/null || \
+           ! grep -qE "(PATH.*${dir_pattern}|PATH.*${home_pattern})" "$config_file" 2>/dev/null; then
+            mkdir -p "$(dirname "$config_file")"
+            echo "" >> "$config_file"
+            echo "# ai-init" >> "$config_file"
+            # Use $HOME for .local/bin for portability, otherwise use exact path
+            if [ "$install_dir" = "${HOME}/.local/bin" ]; then
+                echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> "$config_file"
+            else
+                echo "$path_line" >> "$config_file"
+            fi
+            echo -e "${GREEN}Updated ${config_file}${NC}"
+        else
+            echo -e "${GREEN}PATH already configured in ${config_file}${NC}"
+        fi
     fi
 }
 

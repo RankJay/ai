@@ -41,6 +41,7 @@ By submitting a contribution to this project, you agree to the following terms:
 4. **License Acknowledgment**: You acknowledge that your contribution will be licensed under the PolyForm Noncommercial License 1.0.0.
 
 This agreement allows the maintainer to:
+
 - Maintain unified copyright ownership
 - Relicense the project if needed in the future
 - Enforce the license against violators
@@ -95,7 +96,7 @@ If you cannot agree to these terms, please do not submit contributions.
 
 ### Project Structure
 
-```
+```txt
 ai/
 ├── src/
 │   ├── main.rs           # CLI entry point
@@ -126,7 +127,7 @@ Use descriptive branch names:
 
 Write clear, concise commit messages:
 
-```
+```txt
 Add --verbose flag to doctor command
 
 - Show detailed file status during health check

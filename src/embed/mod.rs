@@ -125,11 +125,6 @@ pub fn get_all_files() -> Vec<EmbeddedFile> {
             content: include_str!("../../public/cursor/commands/review.md"),
             category: FileCategory::Commands,
         },
-        EmbeddedFile {
-            target_path: ".cursor/commands/sync.md",
-            content: include_str!("../../public/cursor/commands/sync.md"),
-            category: FileCategory::Commands,
-        },
         // .cursor/hooks/
         EmbeddedFile {
             target_path: ".cursor/hooks.json",
