@@ -19,6 +19,7 @@ globs:
 - Stop and ask if ambiguous
 - Reference ai-context.md for patterns to follow/avoid
 - Flag when deviating from architectural principles
+- Always attempt to install dependencies instead of adding to config files.
 
 ## After Generation
 
