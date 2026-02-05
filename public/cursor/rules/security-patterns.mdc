@@ -1,4 +1,4 @@
----
+﻿---
 alwaysApply: false
 description: "Security guidelines for authentication, authorization, payment processing, and data protection code"
 globs:
@@ -10,8 +10,19 @@ globs:
   - "**/security/**"
   - "**/*auth*.ts"
   - "**/*auth*.js"
+  - "**/*auth*.py"
   - "**/*payment*.ts"
   - "**/*payment*.js"
+  - "**/*payment*.py"
+  - "**/*credential*"
+  - "**/*secret*"
+  - "**/*password*"
+  - "**/middleware/**"
+  - "**/*.env*"
+  - "**/migrations/**"
+  - "**/api/routes*"
+  - "**/*session*"
+  - "**/*token*"
 ---
 
 # Security Patterns

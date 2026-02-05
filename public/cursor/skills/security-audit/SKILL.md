@@ -69,7 +69,7 @@ Automatically invoke when code involves:
 
 Check for these specific issues:
 
-**SQL Injection**
+SQL Injection
 
 ```javascript
 // BAD
@@ -79,7 +79,7 @@ db.query(`SELECT * FROM users WHERE id = ${userId}`)
 db.query('SELECT * FROM users WHERE id = ?', [userId])
 ```
 
-**XSS**
+XSS
 
 ```javascript
 // BAD
@@ -89,7 +89,7 @@ element.innerHTML = userInput
 element.textContent = userInput
 ```
 
-**Hardcoded Secrets**
+Hardcoded Secrets
 
 ```javascript
 // BAD
@@ -99,7 +99,7 @@ const apiKey = "sk_live_abc123"
 const apiKey = process.env.API_KEY
 ```
 
-**Insecure Token Storage**
+Insecure Token Storage
 
 ```javascript
 // BAD

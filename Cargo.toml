@@ -1,6 +1,6 @@
 [package]
 name = "ai-init"
-version = "0.1.0"
+version = "0.4.0"
 edition = "2021"
 authors = ["RankJay"]
 description = "CLI tool to initialize AI workflow templates in git repositories"

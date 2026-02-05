@@ -1,20 +1,32 @@
-# Research Phase
+﻿# /research [task description]
 
-You are conducting research for a coding task. This is **Phase 1** of the three-phase workflow (Research → Plan → Implement).
+Perform the Research phase of the three-phase workflow.
 
-## Your Process
+## Purpose
 
-1. Read @.ai/ai-context.md for existing patterns and constraints
-2. Identify all files/modules related to the user's task
-3. Map dependencies between components
-4. Identify what's ESSENTIAL complexity vs ACCIDENTAL complexity
-5. Document constraints and edge cases
-6. List open questions that need answers
+Understand the system before modifying it. Compress understanding into documented findings that will inform the planning phase.
 
-## Output
+## First Steps
 
-Create a research document with:
+1. Read `.ai/ai-context.md` for existing patterns and constraints
+2. Read `.ai/template/research.md` for output structure
+3. For complex tasks (touching >5 files or unfamiliar territory), spawn the **researcher subagent**
 
+## Process
+
+1. **Map the landscape** - Identify all files, modules, and components involved
+2. **Trace dependencies** - What depends on what? What's the blast radius?
+3. **Analyze current implementation** - How does it work now?
+4. **Separate essential from accidental** - What's inherent vs from technical debt?
+5. **Discover constraints** - What must not break? What must remain compatible?
+6. **Find edge cases** - What's not obvious from a surface read?
+7. **Identify risk areas** - Security, performance, high coupling
+
+## Output Requirements
+
+Create `.ai/active-research.md` with:
+
+- **YAML frontmatter**: task name, created date, status: research
 - **Components involved** (with file paths)
 - **Dependencies mapped** (what depends on what)
 - **Current implementation analysis** (how it works now)
@@ -22,26 +34,34 @@ Create a research document with:
 - **Constraints discovered** (what must not break, what must remain compatible)
 - **Open questions** (what needs clarification)
 
-Save to `.ai/active-research.md`
+Use the structure from `.ai/template/research.md`.
 
-Ask clarifying questions before finalizing. Probe the user's understanding.
+## When to Spawn Researcher Subagent
 
-## Critical Rules
+For large or complex tasks, spawn the researcher subagent:
 
-- **Do NOT generate implementation code** - This is research only
-- **Do NOT make architectural decisions yet** - That's for the planning phase
-- **Focus on understanding, not solving** - Comprehend before you create
-- **Flag uncertainty** - If you're not sure about something, ask rather than guess
+- Task involves >5 files
+- Exploring unfamiliar code areas
+- Security-sensitive components
+- Architectural decisions needed
 
-## Why This Matters
+The subagent will do deep exploration and return a summary.
 
-"You have to understand the system before you can teach AI to modify it safely."
+## Quality Criteria
 
-Missing context in research leads to AI-slop in implementation. Be thorough.
+Research is complete when:
+
+- [ ] All relevant files identified with specific paths
+- [ ] Dependencies are traced and documented
+- [ ] Essential vs accidental complexity is explicitly labeled
+- [ ] Constraints are discovered and documented
+- [ ] Open questions are listed (if any)
+- [ ] Risk areas are flagged
 
 ## After Research
 
 Once research is complete and validated:
 
-1. Move `.ai/active-research.md` to `.ai/archive/research-[task]-[date].md`
+1. User reviews and approves findings
 2. Proceed to `/plan` to create the implementation specification
+3. Archive happens automatically after `/implement` completes

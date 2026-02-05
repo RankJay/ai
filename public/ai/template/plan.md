@@ -1,6 +1,10 @@
-# Plan: [TASK]
+﻿---
+task: "[TASK NAME]"
+created: [DATE]
+status: planning
+---
 
-Date: [DATE]
+# Plan: [TASK]
 
 ## Architectural Decisions
 

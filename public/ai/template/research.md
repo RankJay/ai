@@ -1,6 +1,10 @@
-# Research: [TASK]
+﻿---
+task: "[TASK NAME]"
+created: [DATE]
+status: research
+---
 
-Date: [DATE]
+# Research: [TASK]
 
 ## Components Involved
 

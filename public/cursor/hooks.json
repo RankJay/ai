@@ -1,4 +1,4 @@
-{
+﻿{
   "version": 1,
   "hooks": {
     "sessionStart": [
@@ -8,14 +8,7 @@
       }
     ],
     "sessionEnd": [],
-    "preToolUse": [
-      {
-        "type": "prompt",
-        "prompt": "Before executing this tool, check: Is this a red-light scenario (security, auth, payments, refactoring touching >5 files)? See .ai/ai-guardrails.md 'Stop and Think Triggers' and 'Risk Assessment Matrix' for full guidance. If yes and no validated plan exists in context, return {\"decision\": \"deny\", \"reason\": \"Red-light scenario requires validated plan. Use /plan first.\"}. Otherwise return {\"decision\": \"allow\"}",
-        "matcher": "write",
-        "timeout": 5
-      }
-    ],
+    "preToolUse": [],
     "postToolUse": [],
     "postToolUseFailure": [],
     "subagentStart": [],

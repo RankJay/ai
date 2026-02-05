@@ -1,5 +1,5 @@
-# extract-learnings.ps1
-# Stop hook - Analyzes completed session and suggests context updates
+﻿# extract-learnings.ps1
+# Stop hook - Surfaces informative message after substantial sessions
 
 # Read input from stdin
 $input = [Console]::In.ReadToEnd() | ConvertFrom-Json
@@ -11,37 +11,32 @@ if ($input.status -ne "completed") {
     exit 0
 }
 
-# Check if we've already looped too many times
-if ($input.loop_count -ge 3) {
+# Check if we've already looped
+if ($input.loop_count -ge 1) {
     $output = @{} | ConvertTo-Json
     Write-Output $output
     exit 0
 }
 
-# Path to transcript (if available)
-$transcriptPath = $input.transcript_path
+# Count edits in this session (if available from edit log)
+$editLogPath = Join-Path $PSScriptRoot "..\..\.ai\edit-log.txt"
+$editCount = 0
 
-# For now, just prompt the user to review and update context
-# In a more advanced version, this could analyze the transcript
-# and suggest specific updates
+if (Test-Path $editLogPath) {
+    # Count lines (each line is one edit)
+    $editCount = (Get-Content $editLogPath | Measure-Object -Line).Lines
+}
 
-$message = @"
-Session completed. Consider updating your project context:
+# If substantial edits, suggest context review
+if ($editCount -gt 5) {
+    $output = @{
+        followup_message = "Session had $editCount file edits. Consider: Does .ai/ai-summary.md or .ai/ai-context.md need updating with new patterns or learnings?"
+    } | ConvertTo-Json -Depth 10
+    Write-Output $output
+} else {
+    # Light session - no followup needed
+    $output = @{} | ConvertTo-Json
+    Write-Output $output
+}
 
-1. Did you discover new patterns or anti-patterns?
-2. Were there architectural decisions made?
-3. Did you identify new pitfalls or constraints?
-4. Should the File/Module Map be updated?
-5. Should active research/plan docs be archived to .ai/archive/?
-
-Update .ai/ai-context.md to capture these learnings for future sessions.
-"@
-
-# Return empty response (no auto-continue for now)
-# To enable auto-continue, uncomment the followup_message line:
-$output = @{
-    # followup_message = "Review session and update .ai/ai-context.md if needed"
-} | ConvertTo-Json -Depth 10
-
-Write-Output $output
 exit 0
